@@ -15,7 +15,6 @@ docs/_build
 .coverage
 *.egg-info
 *.egg
-setup.cfg
 build/
 dist/
 /reports/
