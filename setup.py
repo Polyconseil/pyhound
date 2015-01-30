@@ -28,7 +28,7 @@ setup(
         ],
     },
     include_package_data=True,
-    long_description=open('README').read(),
+    long_description=open('README.rst').read(),
     install_requires=load_requirements('requirements.txt'),
     tests_require=load_requirements('requirements_dev.txt'),
     extras_require={
