@@ -13,7 +13,7 @@ Requirements
 Installation
 ============
 
-**pyhoung** needs a Hound server. See Hound documentation for further
+**pyhound** needs a Hound server. See Hound documentation for further
 details. The steps below assume that you have a Hound server listening
 (for example on ``http://localhost:6080``).
 
