@@ -36,7 +36,7 @@ setup(
     },
     test_suite='tests',
     classifiers=[
-        "Development Status :: 3 - Beta",
+        "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "Natural Language :: English",
