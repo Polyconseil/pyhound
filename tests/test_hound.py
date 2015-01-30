@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from unittest import TestCase
 
 from pyhound import hound
@@ -185,3 +188,11 @@ class TestColorizeMatch(TestCase):
         self.assertEqual(colorized, "I am John. John!")
         colorized = hound.colorize_match(line, pattern, '[%s]', ignore_case=True)
         self.assertEqual(colorized, "I am [John]. [John]!")
+
+    def test_pattern_with_non_ascii(self):
+        line = "I am Jón."
+        pattern = "jón"
+        colorized = hound.colorize_match(line, pattern, '[%s]')
+        self.assertEqual(colorized, "I am Jón.")
+        colorized = hound.colorize_match(line, pattern, '[%s]', ignore_case=True)
+        self.assertEqual(colorized, "I am [Jón].")
