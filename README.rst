@@ -30,10 +30,10 @@ and hence implement some (but definitely not all) of its options.
 
 The main feature of **pyhound** is its ``--help`` argument::
 
-    usage: hound [-h] [--version] [--endpoint URL] [--repos REPOSITORY_LIST]
-                 [--exclude-repos REPOSITORY_LIST] [--path FILE_PATH_PATTERN]
-                 [-A NUM] [-B NUM] [-C NUM] [--color [WHEN]] [-i] [-n]
-                 PATTERN
+    usage: pyhound [-h] [--version] [--endpoint URL] [--repos REPOSITORY_LIST]
+                   [--exclude-repos REPOSITORY_LIST] [--path FILE_PATH_PATTERN]
+                   [-A NUM] [-B NUM] [-C NUM] [--color [WHEN]] [-i] [-n]
+                   PATTERN
     
     A command-line client for Hound.
     

@@ -15,7 +15,7 @@ DEFAULT_ENDPOINT = 'http://localhost:6080/'
 
 def parse_args(args):
     parser = argparse.ArgumentParser(
-        prog="hound",
+        prog="pyhound",
         description="A command-line client for Hound.")
     parser.add_argument('--version', action='version', version='%%(prog)s %s' % VERSION)
 
