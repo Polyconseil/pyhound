@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import re
 from unittest import TestCase
 
 from pyhound import hound
@@ -171,28 +172,30 @@ class TestColorizeMatch(TestCase):
 
     def test_pattern_appears_once(self):
         line = "The revolution will be colorized."
-        pattern = "revolution"
+        pattern = re.compile("revolution")
         colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "The [revolution] will be colorized.")
 
     def test_pattern_appears_many_times(self):
         line = "Some spam in your spammy spam."
-        pattern = "spam"
+        pattern = re.compile("spam")
         colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "Some [spam] in your [spam]my [spam].")
 
     def test_pattern_case(self):
         line = "I am John. John!"
-        pattern = "john"
+        pattern = re.compile("john")
         colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "I am John. John!")
-        colorized = hound.colorize_match(line, pattern, '[%s]', ignore_case=True)
+        pattern = re.compile("john", re.IGNORECASE)
+        colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "I am [John]. [John]!")
 
     def test_pattern_with_non_ascii(self):
         line = "I am Jón."
-        pattern = "jón"
+        pattern = re.compile("jón")
         colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "I am Jón.")
-        colorized = hound.colorize_match(line, pattern, '[%s]', ignore_case=True)
+        pattern = re.compile("jón", re.IGNORECASE)
+        colorized = hound.colorize_match(line, pattern, '[%s]')
         self.assertEqual(colorized, "I am [Jón].")

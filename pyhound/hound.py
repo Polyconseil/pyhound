@@ -26,14 +26,11 @@ COLOR_MATCH = "\033[1m\033[31m%s\033[0m"  # ms/mc/mt: bold red
 COLOR_LINE_NUMBER = "\033[32m%s\033[0m"   # ln: green
 
 
-def colorize_match(line, pattern, color, ignore_case=False):
-    flags = 0
-    if ignore_case:
-        flags = re.IGNORECASE
+def colorize_match(line, pattern, color):
     def colorize(re_match):
         start, end = re_match.span()
         return color % re_match.string[start:end]
-    return re.subn(pattern, colorize, line, flags=flags)[0]
+    return re.subn(pattern, colorize, line)[0]
 
 
 def get_lines_with_context(
@@ -240,7 +237,8 @@ class Client(object):
                 filename = COLOR_FILENAME % filename
                 line_number = COLOR_LINE_NUMBER % line_number
                 delim = COLOR_DELIMITER % delim
-                line = colorize_match(line, self.pattern, COLOR_MATCH, self.ignore_case)
+                pattern_re = re.compile(self.pattern, flags=re.IGNORECASE if self.ignore_case else 0)
+                line = colorize_match(line, pattern_re, COLOR_MATCH)
             out = fmt.format(
                 repo=repo,
                 filename=filename,
