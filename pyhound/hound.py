@@ -12,6 +12,8 @@ import requests
 
 PY2 = sys.version[0] == '2'
 
+DEFAULT_TIMEOUT = 5
+
 # Warning: MATCH must have a lower value than CONTEXT
 LINE_KIND_MATCH = 1
 LINE_KIND_CONTEXT = 2
@@ -144,8 +146,8 @@ class Client(object):
         if not exclude_repos:
             return repos
         if repos == '*':
-            response = requests.get(self.endpoint_list_repos)
-            repos = set(response.json().keys())
+            response = self._call_api(self.endpoint_list_repos)
+            repos = set(response.keys())
         else:
             repos = set(r.strip() for r in repos.split(','))
         exclude_repos = set(r.strip() for r in exclude_repos.split(','))
@@ -166,10 +168,41 @@ class Client(object):
             'i': 'true' if self.ignore_case else '',
             'q': self.pattern,
         }
-        # FIXME: handle errors: connection error, invalid JSON, error
-        # response (invalid regexp), etc.
-        response = requests.get(self.endpoint_search, params=payload)
-        return response.json()['Results']
+        response = self._call_api(self.endpoint_search, payload)
+        return response['Results']
+
+    def _call_api(self, endpoint, payload=None):
+        """Call API on Hound server and undecode JSON response.
+
+        If any error occurs, we exit the program with an error
+        message.
+        """
+        try:
+            response = requests.get(
+                endpoint,
+                params=payload,
+                timeout=DEFAULT_TIMEOUT,
+            )
+        except (requests.ConnectionError, requests.HTTPError) as exc:
+            # exc.args[0] is the original exception that `requests`
+            # wraps. We could probably make the output better for some
+            # cases but I am not keen to guess how each exception
+            # looks like.
+            sys.exit("Could not connect to Hound server: %s" % exc.args[0])
+        except requests.Timeout:
+            sys.exit("Could not connect to Hound server: timeout.")
+
+        try:
+            json = response.json()
+        except ValueError:
+            sys.exit(
+                "Server did not return a valid JSON response. "
+                "Got this instead:\n%s" % response.text
+            )
+
+        if 'Error' in json:
+            sys.exit("Hound server returned an error: %s" % json['Error'])
+        return json
 
     def get_lines(self, results):
         for repo, result in results.items():

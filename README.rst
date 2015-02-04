@@ -82,8 +82,12 @@ Status
 to work. However, it's still very new and has not seen much diverse
 usage yet.
 
-Amongst other things, there is no error handling yet. Hopefully,
-Python tracebacks should be explicit. :)
+One of the current limitations is that **pyhound** currently tries to
+retrieve all search results in a single request to the Hound server.
+The server may return an error if there are too many results
+(currently: more than 5000) and **pyhound** will fail quite
+ungracefully. A future version of **pyhound** will handle this case
+and make multiple requests to the Hound server.
 
 
 Alternatives
