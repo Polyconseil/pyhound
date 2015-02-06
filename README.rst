@@ -85,17 +85,24 @@ usage yet.
 One of the current limitations is that **pyhound** currently tries to
 retrieve all search results in a single request to the Hound server.
 The server may return an error if there are too many results
-(currently: more than 5000) and **pyhound** will fail quite
-ungracefully. A future version of **pyhound** will handle this case
-and make multiple requests to the Hound server.
+(currently: more than 5000) and **pyhound** will kindly display it. A
+future version of **pyhound** should handle this case and make
+multiple requests to the Hound server. Note that Hound web user
+interface has the same limitation and fails in a similar way (although
+it at least shows the first 20 results).
 
 
 Alternatives
 ============
 
-Hound itself provides a command-line client but it seemed a bit
-slowish and the ``grep``-like output has not been implemented (though
-there is a TODO comment there so it may be planned).
+Apart from the web user interface, Hound comes with a command-line
+client. However it currently (Feb. 2015) has several limitations:
+
+- it does not provide a ``grep``-like output (although a TODO comment
+  in the source suggests that it may appear someday);
+- if there are more results that the Hound server can return in a
+  single query, the command-line client displays nothing (as if there
+  was no match at all).
 
 
 The name
