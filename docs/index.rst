@@ -2,7 +2,7 @@ Pyhound pdf
 ===========
 
 
-This is the pdf harvester for pyhound.
+This is a command-line client for the Hound source code search engine.
 
 See the `[README]`_ for more information & examples.
 
