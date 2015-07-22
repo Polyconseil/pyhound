@@ -40,7 +40,7 @@ def get_lines_with_context(
     """Return the given line with its line kind and its line number with
     the requested context (if any).
 
-    This function returns an iterator. Each item is a tuple with the 3
+    This function returns an iterator. Each item is a tuple with 3
     items: the line number, the line kind (see LINE_KIND_*) and the
     line itself.
 
@@ -160,7 +160,7 @@ class Client(object):
         """Call Hound API to perform search."""
         payload = {
             'repos': self.repos,
-            'rng': '',  # range. Empty, we want all results.,
+            'rng': '',  # Empty range, we want all results.
             'files': self.path_pattern,
             'i': 'true' if self.ignore_case else '',
             'q': self.pattern,
