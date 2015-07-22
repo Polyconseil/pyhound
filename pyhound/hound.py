@@ -226,18 +226,18 @@ class Client(object):
 
     def print_lines(self, lines):
         encoding = locale.getdefaultlocale()[1] or 'utf-8'
+        if self.show_line_number:
+            fmt = "{repo}:{filename}{delim}{line_number}{delim}{line}"
+        else:
+            fmt = "{repo}:{filename}{delim}{line}"
+        pattern_re = re.compile(self.pattern, flags=re.IGNORECASE if self.ignore_case else 0)
         for repo, filename, line_number, line_kind, line in lines:
-            if self.show_line_number:
-                fmt = "{repo}:{filename}{delim}{line_number}{delim}{line}"
-            else:
-                fmt = "{repo}:{filename}{delim}{line}"
             delim = ':' if line_kind == LINE_KIND_MATCH else '-'
             if self.color:
                 repo = COLOR_REPO % repo
                 filename = COLOR_FILENAME % filename
                 line_number = COLOR_LINE_NUMBER % line_number
                 delim = COLOR_DELIMITER % delim
-                pattern_re = re.compile(self.pattern, flags=re.IGNORECASE if self.ignore_case else 0)
                 line = colorize_match(line, pattern_re, COLOR_MATCH)
             out = fmt.format(
                 repo=repo,
