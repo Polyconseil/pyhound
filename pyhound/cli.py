@@ -81,10 +81,6 @@ def parse_args(args):
     return parser.parse_args(args)
 
 
-def get_endpoint(options):
-    return options.hound_endpoint
-
-
 def main():
     options = parse_args(sys.argv[1:])
     # If the user calls "--color" without any value, we get None.
