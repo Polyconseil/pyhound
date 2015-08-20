@@ -1,4 +1,4 @@
-**pyhound** is a command-line client for the `Hound`_ source code search
+**pyhound** is a command line client for the `Hound`_ source code search
 engine. It connects to a Hound server.
 
 .. _Hound: https://github.com/etsy/Hound
@@ -26,7 +26,7 @@ Features
 ========
 
 **pyhound** aims to output search results in the manner of ``grep``
-and hence implement some (but definitely not all) of its options.
+and hence implements some (but definitely not all) of its options.
 
 The main feature of **pyhound** is its ``--help`` argument::
 
