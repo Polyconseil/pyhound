@@ -122,6 +122,13 @@ Well, first things first: thanks to the developers of Hound. :)
 hosted on GitHub at https://github.com/polyconseil/pyhound/.
 Suggestions and patches are welcome.
 
+Continuous tests are run on `Travis CI <https://travis-ci.org>`_.
+Current status: |travis-ci-status|_
+
+.. |travis-ci-status| image:: https://travis-ci.org/Polyconseil/pyhound.svg?branch=master
+
+.. _travis-ci-status: https://travis-ci.org/Polyconseil/pyhound
+
 **pyhound** is licensed under the 3-clause BSD license, a copy of
 which is included in the source.
 
