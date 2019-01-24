@@ -31,7 +31,7 @@ setup(
     include_package_data=True,
     long_description=read('README.rst'),
     install_requires=[
-        'requests==2.5.1',
+        'requests<3.0',
     ],
     tests_require=[l for l in read('requirements_dev.txt').splitlines() if not l.startswith(('-', '#'))],
     extras_require={
