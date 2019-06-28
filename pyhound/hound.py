@@ -100,7 +100,8 @@ class Client(object):
             color='never',
             ignore_case=False,
             show_line_number=False,
-            ):
+            line_max_length=None,
+    ):
         # Endpoints
         endpoint = endpoint.rstrip('/')
         self.endpoint_list_repos = '%s/api/v1/repos' % endpoint
@@ -127,6 +128,9 @@ class Client(object):
         self.color = color
         self.ignore_case = ignore_case
         self.show_line_number = show_line_number
+
+        # Custom options.
+        self.line_max_length = line_max_length
 
     def get_repo_list(self, repos, exclude_repos):
         """Return a comma-separated list of repositories to look in.
@@ -214,7 +218,10 @@ class Client(object):
                 match['After'],
                 self.before_context,
                 self.after_context,
-                self.context):
+                self.context,
+        ):
+            if self.line_max_length and len(line) > self.line_max_length:
+                continue
             yield (repo, filename, line_number, line_kind, line)
 
     def print_lines(self, lines):

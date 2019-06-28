@@ -33,6 +33,7 @@ The main feature of **pyhound** is its ``--help`` argument::
     usage: pyhound [-h] [--version] [--endpoint URL] [--repos REPOSITORY_LIST]
                    [--exclude-repos REPOSITORY_LIST] [--path FILE_PATH_PATTERN]
                    [-A NUM] [-B NUM] [-C NUM] [--color [WHEN]] [-i] [-n]
+                   [--line-max-length LINE_MAX_LENGTH]
                    PATTERN
     
     A command-line client for Hound.
@@ -73,6 +74,9 @@ The main feature of **pyhound** is its ``--help`` argument::
                             input files.
       -n, --line-number     Prefix each line of output with the 1-based line
                             number within its input file.
+      --line-max-length LINE_MAX_LENGTH
+                            If given, don't show matching lines if they are longer
+                            than requested.
 
 
 Limitations

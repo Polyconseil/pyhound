@@ -68,6 +68,11 @@ def parse_args():
         '-n', '--line-number', action='store_true', dest='show_line_number',
         help="Prefix each line of output with the 1-based line number within its input file.")
 
+    # Misc options: --max-line-length
+    parser.add_argument(
+        '--line-max-length', type=int,
+        help="If given, don't show matching lines if they are longer than requested.")
+
     # Positional argument: the pattern to search.
     parser.add_argument(
         'pattern', metavar="PATTERN", action='store',
