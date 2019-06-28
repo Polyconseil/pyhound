@@ -36,7 +36,7 @@ setup(
     tests_require=[l for l in read('requirements_dev.txt').splitlines() if not l.startswith(('-', '#'))],
     test_suite='tests',
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Environment :: Console",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",

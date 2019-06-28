@@ -1,7 +1,7 @@
 **pyhound** is a command line client for the `Hound`_ source code search
 engine. It connects to a Hound server.
 
-.. _Hound: https://github.com/etsy/Hound
+.. _Hound: https://github.com/hound-search/Hound
 
 
 Requirements
@@ -75,34 +75,30 @@ The main feature of **pyhound** is its ``--help`` argument::
                             number within its input file.
 
 
-Status
-======
+Limitations
+===========
 
-**pyhound** is considered beta. It's only a few lines long and seems
-to work. However, it's still very new and has not seen much diverse
-usage yet.
-
-One of the current limitations is that **pyhound** currently tries to
-retrieve all search results in a single request to the Hound server.
-The server may return an error if there are too many results
-(currently: more than 5000) and **pyhound** will kindly display it. A
-future version of **pyhound** should handle this case and make
-multiple requests to the Hound server. Note that Hound web user
-interface has the same limitation and fails in a similar way (although
-it at least shows the first 20 results).
+**pyhound** currently tries to retrieve all search results in a single
+request to the Hound server. The server may return an error if there
+are too many results (currently: more than 5000) and **pyhound** will
+kindly display it. A future version of **pyhound** may handle this
+case and make multiple requests to the Hound server. Note that the
+Hound web user interface has the same limitation and fails in a
+similar way (although it at least shows the first 20 results).
 
 
 Alternatives
 ============
 
 Apart from the web user interface, Hound comes with a command-line
-client. However it currently (Feb. 2015) has several limitations:
+client. But it does not provide a ``grep``-like output. There is a
+comment in the source code that suggests that it may appear someday,
+but the comment has been there for 4 years (as of July 2019), so it's
+unlikely to happen anytime soon.
 
-- it does not provide a ``grep``-like output (although a TODO comment
-  in the source suggests that it may appear someday);
-- if there are more results that the Hound server can return in a
-  single query, the command-line client displays nothing (as if there
-  was no match at all).
+Doug Hellmann has released Beagle (also in Python) in February 2018.
+It seems to concentrate on supporting multiple (many!) output formats,
+including a ``grep``-like one. I did not test it.
 
 
 The name
