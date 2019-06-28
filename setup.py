@@ -34,9 +34,6 @@ setup(
         'requests<3.0',
     ],
     tests_require=[l for l in read('requirements_dev.txt').splitlines() if not l.startswith(('-', '#'))],
-    extras_require={
-        ':python_version=="2.6"': ['argparse'],
-    },
     test_suite='tests',
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -45,13 +42,10 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
         "Programming Language :: Python",
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         "Topic :: Software Development",
     ],
 )

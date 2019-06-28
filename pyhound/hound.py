@@ -1,16 +1,9 @@
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-
-import locale
 import math
 import re
 import sys
 
 import requests
 
-
-PY2 = sys.version[0] == '2'
 
 DEFAULT_TIMEOUT = 5
 
@@ -225,7 +218,6 @@ class Client(object):
             yield (repo, filename, line_number, line_kind, line)
 
     def print_lines(self, lines):
-        encoding = locale.getdefaultlocale()[1] or 'utf-8'
         if self.show_line_number:
             fmt = "{repo}:{filename}{delim}{line_number}{delim}{line}"
         else:
@@ -245,8 +237,4 @@ class Client(object):
                 line_number=line_number,
                 delim=delim,
                 line=line)
-            # FIXME: "I'm getting heartburn. Tony, do something terrible."
-            if PY2:
-                print(out.encode(encoding))
-            else:
-                print(out)
+            print(out)

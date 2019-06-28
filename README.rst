@@ -7,7 +7,7 @@ engine. It connects to a Hound server.
 Requirements
 ============
 
-**pyhound** supports Python 2 (>= 2.6) and Python 3 (>= 3.3).
+**pyhound** needs Python 3. It supports versions >= 3.5.
 
 
 Installation

@@ -1,19 +1,14 @@
-from __future__ import unicode_literals
-
 import argparse
 import os
-import sys
 
 from pyhound.hound import Client
 from pyhound.version import VERSION
 
 
-PY2 = sys.version[0] == '2'
-
 DEFAULT_ENDPOINT = 'http://localhost:6080/'
 
 
-def parse_args(args):
+def parse_args():
     parser = argparse.ArgumentParser(
         prog="pyhound",
         description="A command-line client for Hound.")
@@ -78,20 +73,14 @@ def parse_args(args):
         'pattern', metavar="PATTERN", action='store',
         help="The regular expression to search.")
 
-    return parser.parse_args(args)
+    return parser.parse_args()
 
 
 def main():
-    options = parse_args(sys.argv[1:])
+    options = parse_args()
     # If the user calls "--color" without any value, we get None.
     if options.color is None:
         options.color = 'auto'
-    if PY2:
-        # In Python 2, we get byte strings (str) from argparse. We
-        # would prefer unicode objects to be in line with what we get
-        # in Python 3.
-        options.pattern = options.pattern.decode(sys.stdin.encoding)
-        options.path_pattern = (options.path_pattern or '').decode(sys.stdin.encoding)
     c = Client(**options.__dict__)
     return c.run()
 
