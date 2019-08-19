@@ -1,8 +1,11 @@
+import json
 import math
 import re
+import socket
 import sys
-
-import requests
+import urllib.error
+import urllib.parse
+import urllib.request
 
 
 DEFAULT_TIMEOUT = 5
@@ -165,38 +168,39 @@ class Client(object):
         response = self._call_api(self.endpoint_search, payload)
         return response['Results']
 
-    def _call_api(self, endpoint, payload=None):
-        """Call API on Hound server and undecode JSON response.
+    def _call_api(self, endpoint, params=None):
+        """Call API on Hound server and decode JSON response.
 
         If any error occurs, we exit the program with an error
         message.
         """
         try:
-            response = requests.get(
-                endpoint,
-                params=payload,
-                timeout=DEFAULT_TIMEOUT,
-            )
-        except (requests.ConnectionError, requests.HTTPError) as exc:
-            # exc.args[0] is the original exception that `requests`
-            # wraps. We could probably make the output better for some
-            # cases but I am not keen to guess how each exception
-            # looks like.
-            sys.exit("Could not connect to Hound server: %s" % exc.args[0])
-        except requests.Timeout:
+            if params:
+                endpoint += '?%s' % urllib.parse.urlencode({
+                    key: value
+                    for key, value in params.items()
+                    if value is not None
+                })
+            response = urllib.request.urlopen(endpoint, timeout=DEFAULT_TIMEOUT)
+            # We should look at the `Content-type` header, but we
+            # know that Hound uses utf-8.
+            data = response.read().decode('utf-8')
+        except urllib.error.URLError as exc:
+            sys.exit("Could not connect to Hound server: %s" % exc)
+        except socket.timeout:
             sys.exit("Could not connect to Hound server: timeout.")
 
         try:
-            json = response.json()
+            result = json.loads(data)
         except ValueError:
             sys.exit(
                 "Server did not return a valid JSON response. "
-                "Got this instead:\n%s" % response.text
+                "Got this instead:\n%s" % data
             )
 
-        if 'Error' in json:
-            sys.exit("Hound server returned an error: %s" % json['Error'])
-        return json
+        if 'Error' in result:
+            sys.exit("Hound server returned an error: %s" % result['Error'])
+        return result
 
     def get_lines(self, results):
         for repo, result in results.items():

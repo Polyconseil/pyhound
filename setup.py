@@ -30,9 +30,6 @@ setup(
     },
     include_package_data=True,
     long_description=read('README.rst'),
-    install_requires=[
-        'requests<3.0',
-    ],
     tests_require=[l for l in read('requirements_dev.txt').splitlines() if not l.startswith(('-', '#'))],
     test_suite='tests',
     classifiers=[
