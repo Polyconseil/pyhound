@@ -78,8 +78,6 @@ def merge_lines(lines):
     When matching and contextual lines overlap, some lines are
     duplicated. This function merges all lines so that they appear
     only once and have the right "line kind".
-
-    FIXME: this is probably inefficient
     """
     # Sort by line number and line kind (match first).
     sorted_lines = sorted(lines, key=lambda l: (l[2], l[3]))
