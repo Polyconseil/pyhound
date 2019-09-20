@@ -1,5 +1,11 @@
-**pyhound** is a command line client for the `Hound`_ source code search
-engine. It connects to a Hound server.
+**pyhound** is a command line client for the `Hound`_ source code
+search engine. It connects to a Hound server. Here is an absolutely
+not fabricated example::
+
+    $ pyhound frobulate
+    devguide:tools/frob.rst:433:if you really have to frobulate things, be sure to
+    footils:tests/test_frob.py:378:    eventlog_api.log_business(obj, 'frobulated', obj)
+    frobulator:src/frobulator/handler.py:47:    error="Could not frobulate event.",
 
 .. _Hound: https://github.com/hound-search/Hound
 
@@ -17,7 +23,7 @@ Installation
 details. The steps below assume that you have a Hound server listening
 (for example on ``http://localhost:6080``).
 
-To install **pyhound**, use ``pip``:
+To install **pyhound**, use ``pip``::
 
     pip install pyhound
 
@@ -85,10 +91,13 @@ Limitations
 **pyhound** currently tries to retrieve all search results in a single
 request to the Hound server. The server may return an error if there
 are too many results (currently: more than 5000) and **pyhound** will
-kindly display it. A future version of **pyhound** may handle this
-case and make multiple requests to the Hound server. Note that the
-Hound web user interface has the same limitation and fails in a
-similar way (although it at least shows the first 20 results).
+kindly display this error. The Hound web user interface has the same
+limitation and fails in a similar way (although it at least shows the
+first 20 results).
+
+A future version of **pyhound** may handle this case and make multiple
+requests to the Hound server. On the other hand, the usefulness of
+displaying more than 5000 search results seems questionable.
 
 
 Alternatives
@@ -109,7 +118,7 @@ The name
 ========
 
 I must apologize. It's the first time I write a Python package that
-starts with "py". I thought I could resist a few years more. How naive
+starts with "py". I thought I could resist a few more years. How naive
 of me...
 
 
