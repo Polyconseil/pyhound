@@ -1,6 +1,17 @@
 Change log
 ==========
 
+1.0.0 (unreleased)
+------------------
+
+- Compatibility with Python 2 has been dropped. **pyhound** requires
+  at least Python 3.5.
+
+- A new option (``--line-max-length``) has been added to exclude lines
+  that are too long, such as those in concatenated CSS or JavaScript
+  files.
+
+
 pyhound 0.1.0
 -------------
 
