@@ -1,4 +1,6 @@
 -e .
 
-coverage
 nose
+pylint
+tox
+twine
