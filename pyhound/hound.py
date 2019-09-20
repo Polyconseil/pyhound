@@ -61,7 +61,7 @@ def get_lines_with_context(
     before = ()
     after = ()
     if requested_before and requested_before > 0:
-        before = lines_before[-requested_before:]
+        before = lines_before[-requested_before:]  # pylint: disable=invalid-unary-operand-type
         n_before = len(before)
     if requested_after and requested_after > 0:
         after = lines_after[:requested_after]
@@ -89,7 +89,7 @@ def merge_lines(lines):
         yield repo, filename, line_number, line_kind, line
 
 
-class Client(object):
+class Client:
 
     def __init__(self,
             endpoint,
