@@ -7,7 +7,7 @@ def read(filename):
 
 setup(
     name="pyhound",
-    version='1.0.0',
+    version='1.0.1.dev0',
     author="Polyconseil",
     author_email="opensource+pyhound@polyconseil.fr",
     description="A command-line client for the Hound source code search engine.",
