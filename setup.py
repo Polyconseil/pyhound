@@ -1,13 +1,4 @@
-import os
-import re
-
 from setuptools import find_packages, setup
-
-
-# Do not try to import the package to get its version.
-_version_file = open(os.path.join(os.path.dirname(__file__), 'pyhound', 'version.py'))
-VERSION = re.compile(r"^VERSION = '(.*?)'", re.S).match(_version_file.read()).group(1)
-
 
 def read(filename):
     with open(filename) as fp:
@@ -16,7 +7,7 @@ def read(filename):
 
 setup(
     name="pyhound",
-    version=VERSION,
+    version='1.0.0',
     author="Polyconseil",
     author_email="opensource+pyhound@polyconseil.fr",
     description="A command-line client for the Hound source code search engine.",

@@ -1,11 +1,12 @@
 import argparse
 import os
+import pkg_resources
 
 from pyhound.hound import Client
-from pyhound.version import VERSION
-
 
 DEFAULT_ENDPOINT = 'http://localhost:6080/'
+
+VERSION = pkg_resources.get_distribution('pyhound').version
 
 
 def parse_args():
