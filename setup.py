@@ -21,7 +21,7 @@ setup(
     author_email="opensource+pyhound@polyconseil.fr",
     description="A command-line client for the Hound source code search engine.",
     keywords="hound client source code search",
-    url="",
+    url="https://github.com/Polyconseil/pyhound",
     packages=find_packages(),
     entry_points={
         'console_scripts': [
