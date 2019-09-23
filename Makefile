@@ -15,6 +15,7 @@ quality: clean
 	python setup.py sdist
 	twine check dist/*
 	pylint --rcfile=.pylintrc --reports=no --output-format=colorized setup.py tests pyhound
+	check-manifest
 
 release: clean
 	fullrelease
