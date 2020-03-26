@@ -18,7 +18,7 @@ Change log
   files.
 
 
-pyhound 0.1.0
--------------
+0.1.0 (2015-02-04)
+------------------
 
 First public release.
